@@ -1,8 +1,13 @@
 # simple-hyperledger-Public_Benefit
-Fabric1.4.4毕设，三组织，solo排序，仅区块链部分
-二进制工具以及docker镜像需要自行下载
+Fabric1.4.4毕设，三组织，solo排序，仅区块链部分，部署网站可以用Java，java sdk调用区块链部分非常简单
+二进制工具以及docker镜像需要自行下载，首先运行generate.sh生成证书相关文件，再运行start.sh启动docker容器，再运行install_and_instantiate_chaincode.sh部署链码
 
-//查询链码实例化情况
+
+
+
+
+
+//进入cli容器查询链码实例化情况
 docker exec -it cli bash
 peer chaincode list -C mychannel --instantiated
 
@@ -10,7 +15,7 @@ peer chaincode list -C mychannel --instantiated
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 
-//调用链码，进到docker环境后执行
+//调用链码，进入docker cli容器后执行
 
 {
     增加项目：peer chaincode invoke -n mycc -c '{"Args":["addPBProject","ProjectID1","simple","boiy","100"] }' -C mychannel 
